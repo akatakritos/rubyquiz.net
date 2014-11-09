@@ -34,7 +34,28 @@ namespace RubyQuizTests.Solitaire
         {
             var characterGroup = new NumberGroup(1, 2, 3, 4, 5).ToCharacterGroup();
             Assert.That(characterGroup, Is.EqualTo(new CharacterGroup("ABCDE")));
+        }
 
+        [Test]
+        public void CombiningWithAnotherNumberGroupAddsTheValuesTogether()
+        {
+            var a = new NumberGroup(1, 2, 3, 4, 5);
+            var b = new NumberGroup(5, 4, 3, 2, 1);
+
+            var result = a.Combine(b);
+
+            Assert.That(result, Is.EqualTo(new NumberGroup(6, 6, 6, 6, 6)));
+        }
+
+        [Test]
+        public void CombiningBiggerNumbersWrapAround()
+        {
+            var a = new NumberGroup(22, 23, 24, 25, 26);
+            var b = new NumberGroup(10, 10, 10, 10, 10);
+
+            var result = a.Combine(b);
+
+            Assert.That(result, Is.EqualTo(new NumberGroup(6, 7, 8, 9, 10)));
         }
     }
 }

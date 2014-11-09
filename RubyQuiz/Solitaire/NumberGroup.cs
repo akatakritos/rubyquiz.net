@@ -43,6 +43,25 @@ namespace RubyQuiz.Solitaire
             );
         }
 
+        public NumberGroup Combine(NumberGroup that)
+        {
+            return new NumberGroup(
+                combine(this[0], that[0]),
+                combine(this[1], that[1]),
+                combine(this[2], that[2]),
+                combine(this[3], that[3]),
+                combine(this[4], that[4]));
+        }
+
+        private byte combine(byte a, byte b)
+        {
+            byte sum = (byte) (a + b);
+            if (sum > 26)
+                return (byte) (sum - 26);
+
+            return sum;
+        }
+
 
         public bool Equals(NumberGroup other)
         {
