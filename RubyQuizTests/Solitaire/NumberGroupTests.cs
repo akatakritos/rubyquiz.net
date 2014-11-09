@@ -42,7 +42,7 @@ namespace RubyQuizTests.Solitaire
             var a = new NumberGroup(1, 2, 3, 4, 5);
             var b = new NumberGroup(5, 4, 3, 2, 1);
 
-            var result = a.Combine(b);
+            var result = a.Add(b);
 
             Assert.That(result, Is.EqualTo(new NumberGroup(6, 6, 6, 6, 6)));
         }
@@ -53,9 +53,31 @@ namespace RubyQuizTests.Solitaire
             var a = new NumberGroup(22, 23, 24, 25, 26);
             var b = new NumberGroup(10, 10, 10, 10, 10);
 
-            var result = a.Combine(b);
+            var result = a.Add(b);
 
             Assert.That(result, Is.EqualTo(new NumberGroup(6, 7, 8, 9, 10)));
+        }
+
+        [Test]
+        public void SubtractingWithAnotherNumberGroupsSubtractsTheValues()
+        {
+            var a = new NumberGroup(10, 11, 12, 13, 14);
+            var b = new NumberGroup(1, 2, 3, 4, 5);
+
+            var result = a.Subtract(b);
+
+            Assert.That(result, Is.EqualTo(new NumberGroup(9, 9, 9, 9, 9)));
+        }
+
+        [Test]
+        public void IfTheFirstIsLessThanTheSecondItAdds26First()
+        {
+            var a = new NumberGroup(1, 2, 3, 4, 5);
+            var b = new NumberGroup(10, 11, 12, 13, 14);
+
+            var result = a.Subtract(b);
+
+            Assert.That(result, Is.EqualTo(new NumberGroup(17, 17, 17, 17, 17)));
         }
     }
 }
