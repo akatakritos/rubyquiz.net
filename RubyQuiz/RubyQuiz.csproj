@@ -40,11 +40,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Solitaire\Card.cs" />
     <Compile Include="Solitaire\CharacterConverter.cs" />
     <Compile Include="Solitaire\CharacterGroup.cs" />
+    <Compile Include="Solitaire\Deck.cs" />
+    <Compile Include="Solitaire\Face.cs" />
     <Compile Include="Solitaire\MessageSanitizer.cs" />
     <Compile Include="Solitaire\NumberGroup.cs" />
+    <Compile Include="Solitaire\Slice.cs" />
     <Compile Include="Solitaire\SolitaireCipher.cs" />
+    <Compile Include="Solitaire\Suit.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
