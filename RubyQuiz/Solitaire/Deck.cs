@@ -21,7 +21,7 @@ namespace RubyQuiz.Solitaire
         public void MoveCardDown(Card card, int positions)
         {
             var oldIndex = Array.IndexOf(_cards, card);
-            var newIndex = wrap(_cards, oldIndex + positions);
+            var newIndex = wrap(oldIndex + positions);
 
             var buffer = new List<Card>(_cards.Length);
             if (newIndex < oldIndex)
@@ -43,11 +43,17 @@ namespace RubyQuiz.Solitaire
             buffer.CopyTo(_cards);
         }
 
-        private static int wrap(Card[] cards, int index)
+        private int wrap(int index)
         {
-            return index % (cards.Length);
+            return index % (_cards.Length);
         }
 
+        /// <summary>
+        /// Triple cuts around two pivot cards. Cut the deck twice so that the pivot cards and
+        /// all those inbetween are in one pile, then swap the two remaining piles
+        /// </summary>
+        /// <param name="pivot1"></param>
+        /// <param name="pivot2"></param>
         public void TripleCutAround(Card pivot1, Card pivot2)
         {
             var index1 = Array.IndexOf(_cards, pivot1);
@@ -70,7 +76,16 @@ namespace RubyQuiz.Solitaire
 
         public void CountCut(int count)
         {
-            
+            var slice1 = _cards.Slice(0, count);
+            var slice2 = _cards.Slice(count, _cards.Length - count - 1);
+            var slice3 = _cards.Slice(_cards.Length - 1); //should be one!
+
+            var buffer = new List<Card>(_cards.Length);
+            buffer.AddRange(slice2.Items);
+            buffer.AddRange(slice1.Items);
+            buffer.AddRange(slice3.Items);
+
+            buffer.CopyTo(_cards);
         }
 
         public Card BottomCard

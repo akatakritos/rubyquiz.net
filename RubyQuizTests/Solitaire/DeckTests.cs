@@ -56,5 +56,22 @@ namespace RubyQuizTests.Solitaire
             Assert.That(deck[52], Is.EqualTo(Card.RedJoker));
             Assert.That(deck[53], Is.EqualTo(new Card(Suit.Clubs, Face.Ace)));
         }
+
+        [Test]
+        public void CountCutMovesSomeCardsAccordingToTheQuizDescription()
+        {
+            //set up according to quiz description
+            var deck = new Deck();
+            deck.MoveCardDown(Card.RedJoker, 1);
+            deck.MoveCardDown(Card.BlackJoker, 2);
+            deck.TripleCutAround(Card.RedJoker, Card.BlackJoker);
+
+            deck.CountCut(1);
+
+            Assert.That(deck[0], Is.EqualTo(new Card(Suit.Clubs, Face.Two)));
+            Assert.That(deck[51], Is.EqualTo(Card.RedJoker));
+            Assert.That(deck[52], Is.EqualTo(Card.BlackJoker));
+            Assert.That(deck[53], Is.EqualTo(new Card(Suit.Clubs, Face.Ace)));
+        }
     }
 }
