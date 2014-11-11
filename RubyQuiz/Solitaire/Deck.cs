@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace RubyQuiz.Solitaire
 {
@@ -9,7 +10,22 @@ namespace RubyQuiz.Solitaire
 
         public Deck()
         {
-            _cards = generateDefaultDeck();
+            _cards = GenerateDefaultDeck();
+        }
+
+        public Deck(Card[] keyedDeck)
+        {
+            if (keyedDeck == null) throw new ArgumentNullException("keyedDeck");
+            if (keyedDeck.Length != 52) throw new ArgumentOutOfRangeException("keyedDeck", "Key should have 52 cards");
+            if(keyedDeck.Distinct().Count() != 52) throw new ArgumentException("Key should have one of each character", "keyedDeck");
+
+            _cards = new Card[52];
+            Array.Copy(keyedDeck, _cards, 0);
+        }
+
+        public Deck Clone()
+        {
+            return new Deck(_cards); 
         }
 
         /// <summary>
@@ -110,7 +126,7 @@ namespace RubyQuiz.Solitaire
         }
 
 
-        private Card[] generateDefaultDeck()
+        public static Card[] GenerateDefaultDeck()
         {
             var cards = new Card[54];
             int index = 0;
@@ -122,8 +138,8 @@ namespace RubyQuiz.Solitaire
                 }
             }
 
-            cards[index++] = new Card(Suit.None, Face.RedJoker);
-            cards[index++] = new Card(Suit.None, Face.BlackJoker);
+            cards[index++] = Card.RedJoker;
+            cards[index++] = Card.BlackJoker;
 
             return cards;
         }
