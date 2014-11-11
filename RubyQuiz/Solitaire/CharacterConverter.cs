@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RubyQuiz.Solitaire
+﻿namespace RubyQuiz.Solitaire
 {
-    internal static class CharacterConverter
+    public static class CharacterConverter
     {
         public static byte EncodeChar(char c)
         {

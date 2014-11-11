@@ -46,7 +46,12 @@ namespace RubyQuiz.Solitaire
             return string.Format("{0} of {1}", _face, _suit);
         }
 
-        private bool isJoker(Face face)
+        public static bool IsJoker(Card card)
+        {
+            return isJoker(card.Face);
+        }
+
+        private static bool isJoker(Face face)
         {
             return face == Face.RedJoker || face == Face.BlackJoker;
         }
