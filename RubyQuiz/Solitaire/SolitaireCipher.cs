@@ -1,15 +1,34 @@
 ﻿using System;
+using System.Text;
 
 namespace RubyQuiz.Solitaire
 {
     public class SolitaireCipher
     {
-        public string Encrypt(string message)
+        public string Encrypt(Deck key, string message)
         {
-            throw new NotImplementedException();
+            var stream = new DeckKeystream(key.Clone());
+            var messageGroups = CharacterGroup.CreateSequence(MessageSanitizer.Sanitize(message));
+
+            StringBuilder buffer = new StringBuilder();
+            foreach (var group in messageGroups)
+            {
+                var messageNumberGroup = group.ToNumberGroup();
+                var keystreamNumberGroup = nextStreamGroup(stream).ToNumberGroup();
+                var resultGroup = messageNumberGroup.Add(keystreamNumberGroup);
+                buffer.Append(resultGroup.ToCharacterGroup());
+            }
+
+            return buffer.ToString();
+
         }
 
-        public string Decrypt(string encryptedMessage)
+        private CharacterGroup nextStreamGroup(DeckKeystream key)
+        {
+            return new CharacterGroup(key.GetNext(), key.GetNext(), key.GetNext(), key.GetNext(), key.GetNext());
+        }
+
+        public string Decrypt(Deck key, string encryptedMessage)
         {
             throw new NotImplementedException();
         }

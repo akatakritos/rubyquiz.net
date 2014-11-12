@@ -7,6 +7,7 @@ namespace RubyQuiz.Solitaire
     public class Deck
     {
         private readonly Card[] _cards;
+        public static readonly int CardsInDeck = 54; //52 plus 2 jokers
 
         public Deck()
         {
@@ -16,17 +17,22 @@ namespace RubyQuiz.Solitaire
         public Deck(Card[] keyedDeck)
         {
             if (keyedDeck == null) throw new ArgumentNullException("keyedDeck");
-            if (keyedDeck.Length != 52) throw new ArgumentOutOfRangeException("keyedDeck", "Key should have 52 cards");
-            if(keyedDeck.Distinct().Count() != 52) throw new ArgumentException("Key should have one of each character", "keyedDeck");
+            if (keyedDeck.Length != CardsInDeck) throw new ArgumentOutOfRangeException("keyedDeck", "Key should have 52 cards");
+            if(keyedDeck.Distinct().Count() != CardsInDeck) throw new ArgumentException("Key should have one of each character", "keyedDeck");
 
-            _cards = new Card[52];
-            Array.Copy(keyedDeck, _cards, 0);
+            _cards = new Card[CardsInDeck];
+            Array.Copy(keyedDeck, _cards, CardsInDeck);
         }
 
         public Deck Clone()
         {
             return new Deck(_cards); 
         }
+
+        public IEnumerable<Card> Cards
+        {
+            get { return _cards; }
+        } 
 
         /// <summary>
         /// Moves a given card down a number of places. If it goes off the bottom,
@@ -128,7 +134,7 @@ namespace RubyQuiz.Solitaire
 
         public static Card[] GenerateDefaultDeck()
         {
-            var cards = new Card[54];
+            var cards = new Card[CardsInDeck];
             int index = 0;
             foreach (var suit in new Suit[] {Suit.Clubs, Suit.Diamonds, Suit.Hearts, Suit.Spades})
             {

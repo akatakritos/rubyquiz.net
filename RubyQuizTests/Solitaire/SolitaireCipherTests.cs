@@ -10,7 +10,7 @@ namespace RubyQuizTests.Solitaire
         public void TestEncryptionSample1()
         {
             var cipher = new SolitaireCipher();
-            var encryted = cipher.Encrypt("YOUR CIPHER IS WORKING");
+            var encryted = cipher.Encrypt(new Deck(), "YOUR CIPHER IS WORKING");
             Assert.That(encryted, Is.EqualTo("CLEPKHHNIYCFPWHFDFEH"));
         }
 
@@ -18,7 +18,7 @@ namespace RubyQuizTests.Solitaire
         public void TestEncryiptionSample2()
         {
             var cipher = new SolitaireCipher();
-            var encryted = cipher.Encrypt("WELCOME TO RUBY QUIZ");
+            var encryted = cipher.Encrypt(new Deck(), "WELCOME TO RUBY QUIZ");
             Assert.That(encryted, Is.EqualTo("ABVAWLWZSYOORYKDUPVH"));
         }
 
@@ -26,7 +26,7 @@ namespace RubyQuizTests.Solitaire
         public void TestDecryptionSample1()
         {
             var cipher = new SolitaireCipher();
-            var encryted = cipher.Decrypt("CLEPKHHNIYCFPWHFDFEH");
+            var encryted = cipher.Decrypt(new Deck(), "CLEPKHHNIYCFPWHFDFEH");
             Assert.That(encryted, Is.EqualTo("YOURCIPHERISWORKINGX"));
         }
 
@@ -34,7 +34,7 @@ namespace RubyQuizTests.Solitaire
         public void TestDecryptionSample2()
         {
             var cipher = new SolitaireCipher();
-            var encryted = cipher.Decrypt("ABVAWLWZSYOORYKDUPVH");
+            var encryted = cipher.Decrypt(new Deck(), "ABVAWLWZSYOORYKDUPVH");
             Assert.That(encryted, Is.EqualTo("WELCOMETORUBYQUIZXXX"));
         }
     }

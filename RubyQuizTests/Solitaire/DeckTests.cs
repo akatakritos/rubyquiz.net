@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System.Linq;
 using NUnit.Framework;
 using RubyQuiz.Solitaire;
 
@@ -72,6 +72,13 @@ namespace RubyQuizTests.Solitaire
             Assert.That(deck[51], Is.EqualTo(Card.RedJoker));
             Assert.That(deck[52], Is.EqualTo(Card.BlackJoker));
             Assert.That(deck[53], Is.EqualTo(new Card(Suit.Clubs, Face.Ace)));
+        }
+
+        [Test]
+        public void EachCardInDefaultDeckIsUnique()
+        {
+            var deck = new Deck();
+            Assert.That(deck.Cards.Distinct().Count(), Is.EqualTo(Deck.CardsInDeck));
         }
     }
 }

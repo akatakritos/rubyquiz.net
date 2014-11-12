@@ -26,5 +26,11 @@ namespace RubyQuizTests.Solitaire
             Assert.That(new Card(Suit.None, Face.RedJoker).Value, Is.EqualTo(53));
             Assert.That(new Card(Suit.None, Face.BlackJoker).Value, Is.EqualTo(53));
         }
+
+        [Test]
+        public void TheTwoJokesDontEvaluateEqual()
+        {
+            Assert.That(Card.RedJoker, Is.Not.EqualTo(Card.BlackJoker));
+        }
     }
 }
