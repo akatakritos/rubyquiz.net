@@ -49,6 +49,7 @@
     <Compile Include="Solitaire\MessageSanitizer.cs" />
     <Compile Include="Solitaire\NumberGroup.cs" />
     <Compile Include="Solitaire\Slice.cs" />
+    <Compile Include="Solitaire\SliceExtensions.cs" />
     <Compile Include="Solitaire\SolitaireCipher.cs" />
     <Compile Include="Solitaire\Suit.cs" />
   </ItemGroup>

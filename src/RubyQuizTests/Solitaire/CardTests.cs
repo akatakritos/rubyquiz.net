@@ -23,8 +23,8 @@ namespace RubyQuizTests.Solitaire
         [Test]
         public void EitherJokerHasValueOf53()
         {
-            Assert.That(new Card(Suit.None, Face.RedJoker).Value, Is.EqualTo(53));
-            Assert.That(new Card(Suit.None, Face.BlackJoker).Value, Is.EqualTo(53));
+            Assert.That(Card.RedJoker.Value, Is.EqualTo(53));
+            Assert.That(Card.BlackJoker.Value, Is.EqualTo(53));
         }
 
         [Test]

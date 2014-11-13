@@ -7,10 +7,10 @@ namespace RubyQuiz.Solitaire
     {
         public static IEnumerable<char> Sanitize(string message)
         {
-            return message.Select(char.ToUpperInvariant).Where(isLetter);
+            return message.Select(char.ToUpperInvariant).Where(isUpperCaseLetter);
         }
 
-        private static bool isLetter(char c)
+        private static bool isUpperCaseLetter(char c)
         {
             return c >= 'A' && c <= 'Z';
         }

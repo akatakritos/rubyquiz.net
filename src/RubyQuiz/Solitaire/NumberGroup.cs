@@ -8,7 +8,6 @@ namespace RubyQuiz.Solitaire
 
         public NumberGroup(byte b1, byte b2, byte b3, byte b4, byte b5)
         {
-            _contents = 0;
             _contents = b1;
             _contents = (_contents << 8) | b2;
             _contents = (_contents << 8) | b3;
