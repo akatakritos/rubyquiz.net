@@ -7,11 +7,13 @@ namespace RubyQuiz.Solitaire
     public class Deck
     {
         private readonly Card[] _cards;
+        private readonly List<Card> _buffer; 
         public static readonly int CardsInDeck = 54; //52 plus 2 jokers
 
         public Deck()
         {
             _cards = GenerateDefaultDeck();
+            _buffer = new List<Card>(_cards.Length);
         }
 
         public Deck(Card[] keyedDeck)
@@ -21,6 +23,7 @@ namespace RubyQuiz.Solitaire
             if(keyedDeck.Distinct().Count() != CardsInDeck) throw new ArgumentException("Key should have one of each character", "keyedDeck");
 
             _cards = new Card[CardsInDeck];
+            _buffer = new List<Card>(_cards.Length);
             Array.Copy(keyedDeck, _cards, CardsInDeck);
         }
 
@@ -45,24 +48,24 @@ namespace RubyQuiz.Solitaire
             var oldIndex = Array.IndexOf(_cards, card);
             var newIndex = wrap(oldIndex + positions);
 
-            var buffer = new List<Card>(_cards.Length);
+            _buffer.Clear();
             if (newIndex < oldIndex)
             {
                 newIndex++; //because of wrapping around
-                buffer.AddRange(_cards.Slice(0, newIndex).Items);
-                buffer.Add(card);
-                buffer.AddRange(_cards.Slice(newIndex, oldIndex - newIndex).Items);
-                buffer.AddRange(_cards.Slice(oldIndex + 1).Items);
+                _buffer.AddRange(_cards.Slice(0, newIndex).Items);
+                _buffer.Add(card);
+                _buffer.AddRange(_cards.Slice(newIndex, oldIndex - newIndex).Items);
+                _buffer.AddRange(_cards.Slice(oldIndex + 1).Items);
             }
             else
             {
-                buffer.AddRange(_cards.Slice(0, oldIndex).Items);
-                buffer.AddRange(_cards.Slice(oldIndex + 1, positions).Items);
-                buffer.Add(card);
-                buffer.AddRange(_cards.Slice(newIndex + 1).Items);
+                _buffer.AddRange(_cards.Slice(0, oldIndex).Items);
+                _buffer.AddRange(_cards.Slice(oldIndex + 1, positions).Items);
+                _buffer.Add(card);
+                _buffer.AddRange(_cards.Slice(newIndex + 1).Items);
             }
 
-            buffer.CopyTo(_cards);
+            _buffer.CopyTo(_cards);
         }
 
         private int wrap(int index)
@@ -125,7 +128,8 @@ namespace RubyQuiz.Solitaire
             get
             {
                 if (index < 0 || index >= _cards.Length)
-                    throw new ArgumentOutOfRangeException("index", "Index must be between 0 and 51");
+                    throw new ArgumentOutOfRangeException("index",
+                        string.Format("Index must be between 0 and {0}", _cards.Length - 1));
 
                 return _cards[index];
             }
@@ -136,7 +140,7 @@ namespace RubyQuiz.Solitaire
         {
             var cards = new Card[CardsInDeck];
             int index = 0;
-            foreach (var suit in new Suit[] {Suit.Clubs, Suit.Diamonds, Suit.Hearts, Suit.Spades})
+            foreach (var suit in new[] {Suit.Clubs, Suit.Diamonds, Suit.Hearts, Suit.Spades})
             {
                 for (var i = 1; i <= 13; i++)
                 {
