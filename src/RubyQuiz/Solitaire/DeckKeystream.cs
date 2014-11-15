@@ -27,7 +27,7 @@ namespace RubyQuiz.Solitaire
         private Card getNextNonJoker(Deck deck)
         {
             Card c;
-            while (Card.IsJoker(c = getNextCardFromDeck(deck)))
+            while ((c = getNextCardFromDeck(deck)).IsJoker)
             { 
                 //noop
             }
