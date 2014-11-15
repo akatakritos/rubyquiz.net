@@ -14,8 +14,8 @@ namespace RubyQuizTests.Solitaire
 
             Assert.That(deck[0], Is.EqualTo(new Card(Suit.Clubs, Face.Ace)));
             Assert.That(deck[13], Is.EqualTo(new Card(Suit.Diamonds, Face.Ace)));
-            Assert.That(deck[52], Is.EqualTo(new Card(Suit.None, Face.RedJoker)));
-            Assert.That(deck[53], Is.EqualTo(new Card(Suit.None, Face.BlackJoker)));
+            Assert.That(deck[52], Is.EqualTo(Card.RedJoker));
+            Assert.That(deck[53], Is.EqualTo(Card.BlackJoker));
         }
 
         [Test]
@@ -23,21 +23,21 @@ namespace RubyQuizTests.Solitaire
         {
             var deck = new Deck();
 
-            deck.MoveCardDown(new Card(Suit.None, Face.RedJoker), 1);
+            deck.MoveCardDown(Card.RedJoker, 1);
 
-            Assert.That(deck[53], Is.EqualTo(new Card(Suit.None, Face.RedJoker)));
+            Assert.That(deck[53], Is.EqualTo(Card.RedJoker));
         }
 
         [Test]
         public void MovingtheBlackJokerNextWrapsItToTheTop()
         {
             var deck = new Deck();
-            deck.MoveCardDown(new Card(Suit.None, Face.RedJoker), 1);
+            deck.MoveCardDown(Card.RedJoker, 1);
 
-            deck.MoveCardDown(new Card(Suit.None, Face.BlackJoker), 2);
+            deck.MoveCardDown(Card.BlackJoker, 2);
 
             Assert.That(deck[0], Is.EqualTo(new Card(Suit.Clubs, Face.Ace)));
-            Assert.That(deck[1], Is.EqualTo(new Card(Suit.None, Face.BlackJoker)));
+            Assert.That(deck[1], Is.EqualTo(Card.BlackJoker));
         }
 
         [Test]
