@@ -149,6 +149,7 @@ namespace RubyQuiz.Solitaire
             }
 
             cards[index++] = Card.RedJoker;
+            // ReSharper disable once RedundantAssignment
             cards[index++] = Card.BlackJoker;
 
             return cards;

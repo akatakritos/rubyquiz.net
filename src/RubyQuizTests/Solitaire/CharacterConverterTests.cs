@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NUnit.Framework;
 using RubyQuiz.Solitaire;
 
@@ -14,7 +12,7 @@ namespace RubyQuizTests.Solitaire
         [Test]
         public void SmokeTestAlphaToNumber()
         {
-            string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
             var convertedValues = alphabet.Select(CharacterConverter.EncodeChar);
 
