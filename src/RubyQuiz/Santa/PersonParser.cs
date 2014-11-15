@@ -23,6 +23,7 @@ namespace RubyQuiz.Santa
             return new Person(firstName, lastName, email);
         }
 
+        // ReSharper disable once UnusedParameter.Local
         private static void validateInput(string[] parts)
         {
             if (parts.Length != 3)

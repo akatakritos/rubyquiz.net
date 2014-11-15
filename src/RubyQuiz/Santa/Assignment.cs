@@ -11,6 +11,9 @@ namespace RubyQuiz.Santa
 
         public Assignment(Person santa, Person receiver)
         {
+            if(santa == null) throw new ArgumentNullException("santa");
+            if(receiver == null) throw new ArgumentNullException("receiver");
+
             _santa = santa;
             _receiver = receiver;
         }

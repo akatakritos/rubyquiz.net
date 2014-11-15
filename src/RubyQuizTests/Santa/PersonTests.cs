@@ -13,8 +13,9 @@ namespace RubyQuizTests.Santa
         [Test]
         public void CantGiveToSomeOneInTheSameFamily()
         {
-            var mom = new Person("Alyce", "Burke", "aburke@example.com");
-            var dad = new Person("Steve", "Burke", "sburke@example.com");
+            const string LAST_NAME = "Burke";
+            var mom = new Person(Faker.Name.First(), LAST_NAME, Faker.Internet.Email());
+            var dad = new Person(Faker.Name.First(), LAST_NAME, Faker.Internet.Email());
 
             Assert.That(mom.CanGiveTo(dad), Is.False);
             Assert.That(dad.CanGiveTo(mom), Is.False);

@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using NUnit.Framework;
-
 using RubyQuiz.Santa;
 
 namespace RubyQuizTests.Santa
@@ -37,15 +33,9 @@ namespace RubyQuizTests.Santa
         [Test]
         public void ThrowFormatExceptionOnBadString()
         {
-            Assert.Throws<FormatException>(() =>
-            {
-                PersonParser.Parse("THIS IS A BAD STRING");
-            });
+            Assert.Throws<FormatException>(() => PersonParser.Parse("THIS IS A BAD STRING"));
 
-            Assert.Throws<FormatException>(() =>
-            {
-                PersonParser.Parse("first last email@somethingnotinbrackets");
-            });
+            Assert.Throws<FormatException>(() => PersonParser.Parse("first last email@somethingnotinbrackets"));
         }
 
         [Test]
