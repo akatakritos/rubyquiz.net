@@ -80,5 +80,6 @@ namespace RubyQuizTests.Solitaire
             var deck = new Deck();
             Assert.That(deck.Cards.Distinct().Count(), Is.EqualTo(Deck.CardsInDeck));
         }
+
     }
 }

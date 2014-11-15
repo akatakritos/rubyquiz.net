@@ -1,4 +1,6 @@
-﻿namespace RubyQuiz.Solitaire
+﻿using System;
+
+namespace RubyQuiz.Solitaire
 {
     public class DeckKeystream
     {
@@ -6,12 +8,14 @@
 
         public DeckKeystream(Deck deck)
         {
-            _deck = deck;
+            if (deck == null) throw new ArgumentNullException("deck");
+                
+            _deck = deck.Clone();
         }
 
         public char GetNext()
         {
-            Card nextNonJoker = getNextNonJoker(_deck);
+            var nextNonJoker = getNextNonJoker(_deck);
 
             var value = nextNonJoker.Value;
             if (value > 26)

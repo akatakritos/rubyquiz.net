@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace RubyQuiz.Solitaire
@@ -7,6 +8,8 @@ namespace RubyQuiz.Solitaire
     {
         public static IEnumerable<char> Sanitize(string message)
         {
+            if (message == null) throw new ArgumentNullException("message");
+
             return message.Select(char.ToUpperInvariant).Where(isUpperCaseLetter);
         }
 

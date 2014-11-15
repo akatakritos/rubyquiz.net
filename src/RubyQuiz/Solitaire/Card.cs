@@ -12,6 +12,11 @@ namespace RubyQuiz.Solitaire
 
         public Card(Suit suit, Face face)
         {
+            if (suit != Suit.None && (face == Face.RedJoker || face == Face.BlackJoker))
+                throw new ArgumentOutOfRangeException("suit", "Joker face cards must be paired with Suit.None");
+            if (suit == Suit.None && (face != Face.RedJoker && face != Face.BlackJoker))
+                throw new ArgumentOutOfRangeException("suit", "Suit.None can only be paired with Joker faces");
+
             _suit = suit;
             _face = face;
         }
@@ -39,7 +44,6 @@ namespace RubyQuiz.Solitaire
 
         public override string ToString()
         {
-
             if (isJoker(_face))
                 return _face.ToString();
 
