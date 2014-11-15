@@ -40,6 +40,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Santa\Person.cs" />
+    <Compile Include="Santa\PersonParser.cs" />
     <Compile Include="Solitaire\Card.cs" />
     <Compile Include="Solitaire\CharacterConverter.cs" />
     <Compile Include="Solitaire\CharacterGroup.cs" />
