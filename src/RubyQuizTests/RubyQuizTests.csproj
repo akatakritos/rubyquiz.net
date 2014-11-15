@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Santa\PersonParserTests.cs" />
+    <Compile Include="Santa\PersonTests.cs" />
     <Compile Include="Solitaire\CardTests.cs" />
     <Compile Include="Solitaire\CharacterConverterTests.cs" />
     <Compile Include="Solitaire\CharacterGroupTests.cs" />

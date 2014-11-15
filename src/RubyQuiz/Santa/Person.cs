@@ -33,6 +33,11 @@ namespace RubyQuiz.Santa
             get { return _email; }
         }
 
+        public bool CanGiveTo(Person givee)
+        {
+            return !IsInSameFamily(givee);
+        }
+
         public bool IsInSameFamily(Person other)
         {
             return other.LastName == this.LastName;
