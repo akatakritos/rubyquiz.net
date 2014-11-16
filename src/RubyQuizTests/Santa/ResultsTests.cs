@@ -20,7 +20,7 @@ namespace RubyQuizTests.Santa
                 new Person(Faker.Name.First(), LAST_NAME, Faker.Internet.Email()),
                 new Person(Faker.Name.First(), LAST_NAME, Faker.Internet.Email())
             };
-            Assert.Throws<Exception>(() => Assigner.Assign(people));
+            Assert.Throws<ImpossibleSantaException>(() => Assigner.Assign(people));
         }
 
         [Test]
@@ -36,5 +36,4 @@ namespace RubyQuizTests.Santa
             }
         }
     }
-
 }

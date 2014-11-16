@@ -41,6 +41,8 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Santa\Assignment.cs" />
+    <Compile Include="Santa\BruteForceRandomizer.cs" />
+    <Compile Include="Santa\ImpossibleSantaException.cs" />
     <Compile Include="Santa\ISantaAssigner.cs" />
     <Compile Include="Santa\Person.cs" />
     <Compile Include="Santa\PersonParser.cs" />
