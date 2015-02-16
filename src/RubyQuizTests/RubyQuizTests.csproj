@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Lcd\DigitFixtures.cs" />
     <Compile Include="Lcd\DigitWriterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Santa\BruteForceRandomizerTests.cs" />
