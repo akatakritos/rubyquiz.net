@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RubyQuiz", "RubyQuiz\RubyQuiz.csproj", "{EF72D0C2-2D42-4026-8F8D-B2B393A9CA0E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RubyQuiz.Core", "RubyQuiz.Core\RubyQuiz.Core.csproj", "{EF72D0C2-2D42-4026-8F8D-B2B393A9CA0E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RubyQuizTests", "RubyQuizTests\RubyQuizTests.csproj", "{B73B88BD-3F25-4E37-B8C0-01F25E1FAD19}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RubyQuiz.Runner", "RubyQuiz.Runner\RubyQuiz.Runner.csproj", "{7C0A52C2-9D97-4084-A882-6EE155E00609}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Runner", "Runner\Runner.csproj", "{7C0A52C2-9D97-4084-A882-6EE155E00609}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RubyQuiz.Tests", "RubyQuiz.Tests\RubyQuiz.Tests.csproj", "{B73B88BD-3F25-4E37-B8C0-01F25E1FAD19}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +19,14 @@ Global
 		{EF72D0C2-2D42-4026-8F8D-B2B393A9CA0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF72D0C2-2D42-4026-8F8D-B2B393A9CA0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF72D0C2-2D42-4026-8F8D-B2B393A9CA0E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B73B88BD-3F25-4E37-B8C0-01F25E1FAD19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B73B88BD-3F25-4E37-B8C0-01F25E1FAD19}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B73B88BD-3F25-4E37-B8C0-01F25E1FAD19}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B73B88BD-3F25-4E37-B8C0-01F25E1FAD19}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7C0A52C2-9D97-4084-A882-6EE155E00609}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7C0A52C2-9D97-4084-A882-6EE155E00609}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C0A52C2-9D97-4084-A882-6EE155E00609}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C0A52C2-9D97-4084-A882-6EE155E00609}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B73B88BD-3F25-4E37-B8C0-01F25E1FAD19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B73B88BD-3F25-4E37-B8C0-01F25E1FAD19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B73B88BD-3F25-4E37-B8C0-01F25E1FAD19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B73B88BD-3F25-4E37-B8C0-01F25E1FAD19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

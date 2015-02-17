@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EF72D0C2-2D42-4026-8F8D-B2B393A9CA0E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RubyQuiz.Core</RootNamespace>
+    <AssemblyName>RubyQuiz.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Lcd\Digit.cs" />
+    <Compile Include="Lcd\DigitWriter.cs" />
+    <Compile Include="Lcd\Segments.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Santa\Assignment.cs" />
+    <Compile Include="Santa\BruteForceRandomizer.cs" />
+    <Compile Include="Santa\ImpossibleSantaException.cs" />
+    <Compile Include="Santa\ISantaAssigner.cs" />
+    <Compile Include="Santa\Person.cs" />
+    <Compile Include="Santa\PersonParser.cs" />
+    <Compile Include="Solitaire\Card.cs" />
+    <Compile Include="Solitaire\CharacterConverter.cs" />
+    <Compile Include="Solitaire\CharacterGroup.cs" />
+    <Compile Include="Solitaire\Deck.cs" />
+    <Compile Include="Solitaire\DeckKeystream.cs" />
+    <Compile Include="Solitaire\Face.cs" />
+    <Compile Include="Solitaire\MessageSanitizer.cs" />
+    <Compile Include="Solitaire\NumberGroup.cs" />
+    <Compile Include="Solitaire\Slice.cs" />
+    <Compile Include="Solitaire\SliceExtensions.cs" />
+    <Compile Include="Solitaire\SolitaireCipher.cs" />
+    <Compile Include="Solitaire\Suit.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
