@@ -5,7 +5,7 @@ using System.Linq;
 namespace RubyQuiz.Lcd
 {
     [Flags]
-    public enum Segments : byte
+    internal enum Segments : byte
     {
         Top         = 0x01,
         TopLeft     = 0x02,

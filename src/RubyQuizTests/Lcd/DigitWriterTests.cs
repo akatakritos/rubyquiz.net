@@ -45,5 +45,32 @@ namespace RubyQuizTests.Lcd
             Assert.That(output.ToString(), Is.EqualTo(expected));
         }
 
+        [Test]
+        public void MultipleDigitsInALine()
+        {
+            var output = new StringWriter();
+            var writer = new DigitWriter(output);
+
+            writer.Write("012345");
+
+            Assert.That(output.ToString(), Is.EqualTo(DigitFixtures.Create(
+                " --        --   --        -- ",
+                "|  |    |    |    | |  | |   ",
+                "|  |    |    |    | |  | |   ",
+                "           --   --   --   -- ",
+                "|  |    | |       |    |    |",
+                "|  |    | |       |    |    |",
+                " --        --   --        -- ")));
+        }
+
+        [Test]
+        public void ThrowsIfPassedNonDigits()
+        {
+            var _ = new StringWriter();
+            var writer = new DigitWriter(_);
+
+            Assert.Throws<ArgumentException>(() => writer.Write("0123a"));
+        }
+
     }
 }

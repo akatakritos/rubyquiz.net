@@ -4,9 +4,9 @@ using System.Linq;
 
 namespace RubyQuiz.Lcd
 {
-    public static class Digit
+    internal static class Digit
     {
-        private static Segments[] Digits = new[]
+        private static readonly Segments[] _digits = new[]
         {
             Segments.Zero, Segments.One, Segments.Two, Segments.Three, Segments.Four,
             Segments.Five, Segments.Six, Segments.Seven, Segments.Eight, Segments.Nine
@@ -15,7 +15,12 @@ namespace RubyQuiz.Lcd
         public static Segments FromChar(char digit)
         {
             var index = digit - '0';
-            return Digits[index];
+            return _digits[index];
+        }
+
+        public static Segments[] FromString(string digits)
+        {
+            return digits.Select(FromChar).ToArray();
         }
     }
 

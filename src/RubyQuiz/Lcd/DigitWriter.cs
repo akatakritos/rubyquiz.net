@@ -27,16 +27,40 @@ namespace RubyQuiz.Lcd
 
         public void Write(string digits)
         {
-            var digit = Digit.FromChar(digits[0]);
+            EnsureAllDigits(digits, "digits");
+            var segments = Digit.FromString(digits);
 
-            WriteLine1(digit); _output.WriteLine();
-            WriteLine2(digit); _output.WriteLine();
-            WriteLine3(digit); _output.WriteLine();
-            WriteLine4(digit); _output.WriteLine();
-            WriteLine5(digit); _output.WriteLine();
-            WriteLine6(digit); _output.WriteLine();
-            WriteLine7(digit); _output.WriteLine();
+            PrintForEachDigit(segments, WriteLine1);
+            PrintForEachDigit(segments, WriteLine2);
+            PrintForEachDigit(segments, WriteLine3);
+            PrintForEachDigit(segments, WriteLine4);
+            PrintForEachDigit(segments, WriteLine5);
+            PrintForEachDigit(segments, WriteLine6);
+            PrintForEachDigit(segments, WriteLine7);
         }
+
+        private static void EnsureAllDigits(string s, string paramName)
+        {
+            if (s.Any(c => !char.IsDigit(c)))
+                throw new ArgumentException("string must contain only digit characters", paramName);
+        }
+
+        private void PrintForEachDigit(IList<Segments> digits, Action<Segments> print)
+        {
+            for (int i = 0; i < digits.Count; i++)
+            {
+                var digit = digits[i];
+
+                // if not first, output a space before
+                if (i > 0)
+                    _output.Write(' ');
+
+                print(digit);
+            }
+
+            _output.WriteLine();
+        }
+
 
         private void WriteLine1(Segments digit)
         {
