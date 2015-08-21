@@ -10,11 +10,11 @@ namespace RubyQuiz.Core.Santa
 
         public static Person Parse(string input)
         {
-            if (input == null) throw new ArgumentNullException("input");
+            if (input == null) throw new ArgumentNullException(nameof(input));
 
             var parts = input.Split(new[] { " ", "\t" }, StringSplitOptions.RemoveEmptyEntries);
 
-            validateInput(parts);
+            ValidateInput(parts);
 
             var firstName = parts[0];
             var lastName = parts[1];
@@ -24,7 +24,7 @@ namespace RubyQuiz.Core.Santa
         }
 
         // ReSharper disable once UnusedParameter.Local
-        private static void validateInput(string[] parts)
+        private static void ValidateInput(string[] parts)
         {
             if (parts.Length != 3)
             {
@@ -34,7 +34,7 @@ namespace RubyQuiz.Core.Santa
             {
                 throw new FormatException(FormatExceptionMessage);
             }
-            
+
             if (parts[2].Length < 7)
                 throw new FormatException(FormatExceptionMessage);
         }

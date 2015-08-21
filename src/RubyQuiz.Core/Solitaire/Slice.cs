@@ -12,20 +12,17 @@ namespace RubyQuiz.Core.Solitaire
 
         public Slice(T[] source, int start, int count)
         {
-            if (start < 0) throw new ArgumentOutOfRangeException("start", "start must be greater than 0");
-            if(start + count > source.Length) throw new ArgumentOutOfRangeException("count", "start + count must be within the range of the source array");
+            if (start < 0) throw new ArgumentOutOfRangeException(nameof(start), "start must be greater than 0");
+            if(start + count > source.Length) throw new ArgumentOutOfRangeException(nameof(count), "start + count must be within the range of the source array");
 
             _source = source;
             _start = start;
             _count = count;
         }
 
-        public IEnumerable<T> Items
-        {
-            get { return enumerate(); }
-        }
+        public IEnumerable<T> Items => Enumerate();
 
-        private IEnumerable<T> enumerate()
+        private IEnumerable<T> Enumerate()
         {
             for(var i = 0; i < _count; i++)
                 yield return _source[_start + i];

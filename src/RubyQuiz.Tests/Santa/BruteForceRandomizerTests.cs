@@ -17,6 +17,6 @@ namespace RubyQuiz.Tests.Santa
             _assigner = new BruteForceRandomizer();
         }
 
-        protected override ISantaAssigner Assigner { get { return _assigner; }}
+        protected override ISantaAssigner Assigner => _assigner;
     }
 }

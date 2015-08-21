@@ -11,9 +11,9 @@ namespace RubyQuiz.Core.Solitaire
 
         public CharacterGroup(string initialContents)
         {
-            if (initialContents == null) throw new ArgumentNullException("initialContents");
-            if (initialContents.Length == 0) throw new ArgumentException("Empty intial value", "initialContents");
-            if (initialContents.Length > 5) throw new ArgumentException("Too many initial characters", "initialContents");
+            if (initialContents == null) throw new ArgumentNullException(nameof(initialContents));
+            if (initialContents.Length == 0) throw new ArgumentException("Empty intial value", nameof(initialContents));
+            if (initialContents.Length > 5) throw new ArgumentException("Too many initial characters", nameof(initialContents));
 
             _contents = initialContents.PadRight(5, 'X');
         }
@@ -39,24 +39,24 @@ namespace RubyQuiz.Core.Solitaire
             get
             {
                 if (index < 0 || index > 4)
-                    throw new ArgumentOutOfRangeException("index", "index must be between 0 and 4 inclusive.");
+                    throw new ArgumentOutOfRangeException(nameof(index), "index must be between 0 and 4 inclusive.");
                 return _contents[index];
             }
         }
-       
+
 
         public static IEnumerable<CharacterGroup> CreateSequence(IEnumerable<char> stream)
         {
             if (stream == null)
-                throw new ArgumentNullException("stream");
+                throw new ArgumentNullException(nameof(stream));
 
-            return createSequence(stream);
+            return CreateSequenceImpl(stream);
         }
 
-        private static IEnumerable<CharacterGroup> createSequence(IEnumerable<char> stream)
+        private static IEnumerable<CharacterGroup> CreateSequenceImpl(IEnumerable<char> stream)
         {
             var buffer = new StringBuilder(5);
-            foreach (char c in stream)
+            foreach (var c in stream)
             {
                 buffer.Append(c);
 

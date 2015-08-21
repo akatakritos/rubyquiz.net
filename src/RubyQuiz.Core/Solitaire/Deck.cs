@@ -7,8 +7,8 @@ namespace RubyQuiz.Core.Solitaire
     public class Deck
     {
         private readonly Card[] _cards;
-        private readonly List<Card> _buffer; 
-        public static readonly int CardsInDeck = 54; //52 plus 2 jokers
+        private readonly List<Card> _buffer;
+        public const int CardsInDeck = 54; //52 plus 2 jokers
 
         public Deck()
         {
@@ -29,13 +29,10 @@ namespace RubyQuiz.Core.Solitaire
 
         public Deck Clone()
         {
-            return new Deck(_cards); 
+            return new Deck(_cards);
         }
 
-        public IEnumerable<Card> Cards
-        {
-            get { return _cards; }
-        } 
+        public IEnumerable<Card> Cards => _cards;
 
         /// <summary>
         /// Moves a given card down a number of places. If it goes off the bottom,
@@ -46,7 +43,7 @@ namespace RubyQuiz.Core.Solitaire
         public void MoveCardDown(Card card, int positions)
         {
             var oldIndex = Array.IndexOf(_cards, card);
-            var newIndex = wrap(oldIndex + positions);
+            var newIndex = Wrap(oldIndex + positions);
 
             _buffer.Clear();
             if (newIndex < oldIndex)
@@ -68,7 +65,7 @@ namespace RubyQuiz.Core.Solitaire
             _buffer.CopyTo(_cards);
         }
 
-        private int wrap(int index)
+        private int Wrap(int index)
         {
             return index % (_cards.Length);
         }
@@ -95,7 +92,7 @@ namespace RubyQuiz.Core.Solitaire
             buffer.AddRange(slice3.Items);
             buffer.AddRange(slice2.Items);
             buffer.AddRange(slice1.Items);
-            
+
             buffer.CopyTo(_cards);
         }
 
@@ -113,23 +110,16 @@ namespace RubyQuiz.Core.Solitaire
             buffer.CopyTo(_cards);
         }
 
-        public Card BottomCard
-        {
-            get { return _cards[_cards.Length - 1]; }
-        }
-
-        public Card TopCard
-        {
-            get { return _cards[0]; }
-        }
+        public Card BottomCard => _cards[_cards.Length - 1];
+        public Card TopCard => _cards[0];
 
         public Card this[int index]
         {
             get
             {
                 if (index < 0 || index >= _cards.Length)
-                    throw new ArgumentOutOfRangeException("index",
-                        string.Format("Index must be between 0 and {0}", _cards.Length - 1));
+                    throw new ArgumentOutOfRangeException(nameof(index),
+                        $"Index must be between 0 and {_cards.Length - 1}");
 
                 return _cards[index];
             }

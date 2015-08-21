@@ -14,10 +14,10 @@ namespace RubyQuiz.Core.Santa
             _rng = rng ?? new Random();
             _maxIterations = maxIterations;
         }
-        
+
         public IEnumerable<Assignment> Assign(IEnumerable<Person> people)
         {
-            if (people == null) throw new ArgumentNullException("people");
+            if (people == null) throw new ArgumentNullException(nameof(people));
 
             // ReSharper disable once PossibleMultipleEnumeration
             var santas = people.ToArray();
