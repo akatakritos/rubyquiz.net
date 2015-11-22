@@ -6,56 +6,43 @@ namespace RubyQuiz.Core.Solitaire
 {
     public struct Card : IEquatable<Card>
     {
-        private readonly Suit _suit;
-        private readonly Face _face;
-
         public static readonly Card RedJoker = new Card(Suit.None, Face.RedJoker);
         public static readonly Card BlackJoker = new Card(Suit.None, Face.BlackJoker);
 
         public Card(Suit suit, Face face)
         {
             if (suit != Suit.None && (face == Face.RedJoker || face == Face.BlackJoker))
-                throw new ArgumentOutOfRangeException("suit", "Joker face cards must be paired with Suit.None");
+                throw new ArgumentOutOfRangeException(nameof(suit), "Joker face cards must be paired with Suit.None");
             if (suit == Suit.None && (face != Face.RedJoker && face != Face.BlackJoker))
-                throw new ArgumentOutOfRangeException("suit", "Suit.None can only be paired with Joker faces");
+                throw new ArgumentOutOfRangeException(nameof(suit), "Suit.None can only be paired with Joker faces");
 
-            _suit = suit;
-            _face = face;
+            Suit = suit;
+            Face = face;
         }
 
-        public Suit Suit
-        {
-            get { return _suit; }
-        }
-
-        public Face Face
-        {
-            get { return _face; }
-        }
+        public Suit Suit { get; }
+        public Face Face { get; }
 
         public byte Value
         {
             get
             {
-                if (isJoker(_face))
+                if (isJoker(Face))
                     return 53;
 
-                return (byte)((byte) _suit + (byte) _face);
+                return (byte)((byte) Suit + (byte) Face);
             }
         }
 
         public override string ToString()
         {
-            if (isJoker(_face))
-                return _face.ToString();
+            if (isJoker(Face))
+                return Face.ToString();
 
-            return string.Format("{0} of {1}", _face, _suit);
+            return $"{Face} of {Suit}";
         }
 
-        public bool IsJoker
-        {
-            get { return isJoker(_face); }
-        }
+        public bool IsJoker => isJoker(Face);
 
         private static bool isJoker(Face face)
         {
@@ -64,7 +51,7 @@ namespace RubyQuiz.Core.Solitaire
 
         public bool Equals(Card other)
         {
-            return _suit == other._suit && _face == other._face;
+            return Suit == other.Suit && Face == other.Face;
         }
 
         public override bool Equals(object obj)
@@ -77,7 +64,7 @@ namespace RubyQuiz.Core.Solitaire
         {
             unchecked
             {
-                return ((int) _suit*397) ^ (int) _face;
+                return ((int) Suit*397) ^ (int) Face;
             }
         }
 

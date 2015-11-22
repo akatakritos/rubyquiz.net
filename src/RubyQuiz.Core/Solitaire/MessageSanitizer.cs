@@ -10,10 +10,10 @@ namespace RubyQuiz.Core.Solitaire
         {
             if (message == null) throw new ArgumentNullException("message");
 
-            return message.Select(char.ToUpperInvariant).Where(isUpperCaseLetter);
+            return message.Select(char.ToUpperInvariant).Where(IsUpperCaseLetter);
         }
 
-        private static bool isUpperCaseLetter(char c)
+        private static bool IsUpperCaseLetter(char c)
         {
             return c >= 'A' && c <= 'Z';
         }

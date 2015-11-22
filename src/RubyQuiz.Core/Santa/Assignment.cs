@@ -11,22 +11,16 @@ namespace RubyQuiz.Core.Santa
 
         public Assignment(Person santa, Person receiver)
         {
-            if(santa == null) throw new ArgumentNullException("santa");
-            if(receiver == null) throw new ArgumentNullException("receiver");
+            if(santa == null) throw new ArgumentNullException(nameof(santa));
+            if(receiver == null) throw new ArgumentNullException(nameof(receiver));
 
             _santa = santa;
             _receiver = receiver;
         }
 
-        public Person Santa
-        {
-            get { return _santa; }
-        }
+        public Person Santa => _santa;
 
-        public Person Receiver
-        {
-            get { return _receiver; }
-        }
+        public Person Receiver => _receiver;
 
         #region Resharper Generated Equality Tests
         public bool Equals(Assignment other)
@@ -47,7 +41,7 @@ namespace RubyQuiz.Core.Santa
         {
             unchecked
             {
-                return ((_santa != null ? _santa.GetHashCode() : 0) * 397) ^ (_receiver != null ? _receiver.GetHashCode() : 0);
+                return ((_santa?.GetHashCode() ?? 0) * 397) ^ (_receiver?.GetHashCode() ?? 0);
             }
         }
 

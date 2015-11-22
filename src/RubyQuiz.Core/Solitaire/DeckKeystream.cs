@@ -10,14 +10,14 @@ namespace RubyQuiz.Core.Solitaire
 
         public DeckKeystream(Deck deck)
         {
-            if (deck == null) throw new ArgumentNullException("deck");
-                
+            if (deck == null) throw new ArgumentNullException(nameof(deck));
+
             _deck = deck.Clone();
         }
 
         public char GetNext()
         {
-            var nextNonJoker = getNextNonJoker(_deck);
+            var nextNonJoker = GetNextNonJoker(_deck);
 
             var value = nextNonJoker.Value;
             if (value > 26)
@@ -26,18 +26,18 @@ namespace RubyQuiz.Core.Solitaire
             return CharacterConverter.DecodeChar(value);
         }
 
-        private Card getNextNonJoker(Deck deck)
+        private static Card GetNextNonJoker(Deck deck)
         {
             Card c;
-            while ((c = getNextCardFromDeck(deck)).IsJoker)
-            { 
+            while ((c = GetNextCardFromDeck(deck)).IsJoker)
+            {
                 //noop
             }
 
             return c;
         }
 
-        private Card getNextCardFromDeck(Deck deck)
+        private static Card GetNextCardFromDeck(Deck deck)
         {
             deck.MoveCardDown(Card.RedJoker, 1);
             deck.MoveCardDown(Card.BlackJoker, 2);

@@ -6,32 +6,16 @@ namespace RubyQuiz.Core.Santa
 {
     public class Person : IEquatable<Person>
     {
-
-        private readonly string _firstName;
-        private readonly string _lastName;
-        private readonly string _email;
-
         public Person(string firstName, string lastName, string email)
         {
-            _firstName = firstName;
-            _lastName = lastName;
-            _email = email;
+            FirstName = firstName;
+            LastName = lastName;
+            Email = email;
         }
 
-        public string FirstName
-        {
-            get { return _firstName; }
-        }
-
-        public string LastName
-        {
-            get { return _lastName; }
-        }
-
-        public string Email
-        {
-            get { return _email; }
-        }
+        public string FirstName { get; }
+        public string LastName { get; }
+        public string Email { get; }
 
         public bool CanGiveTo(Person givee)
         {
@@ -54,7 +38,7 @@ namespace RubyQuiz.Core.Santa
             {
                 return true;
             }
-            return string.Equals(_firstName, other._firstName) && string.Equals(_lastName, other._lastName) && string.Equals(_email, other._email);
+            return string.Equals(FirstName, other.FirstName) && string.Equals(LastName, other.LastName) && string.Equals(Email, other.Email);
         }
 
         public override bool Equals(object obj)
@@ -78,9 +62,9 @@ namespace RubyQuiz.Core.Santa
         {
             unchecked
             {
-                var hashCode = (_firstName != null ? _firstName.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (_lastName != null ? _lastName.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (_email != null ? _email.GetHashCode() : 0);
+                var hashCode = FirstName?.GetHashCode() ?? 0;
+                hashCode = (hashCode * 397) ^ (LastName?.GetHashCode() ?? 0);
+                hashCode = (hashCode * 397) ^ (Email?.GetHashCode() ?? 0);
                 return hashCode;
             }
         }

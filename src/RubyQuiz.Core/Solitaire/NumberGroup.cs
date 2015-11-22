@@ -19,6 +19,7 @@ namespace RubyQuiz.Core.Solitaire
 
         public override string ToString()
         {
+            // ReSharper disable once UseStringInterpolation
             return string.Format("{0} {1} {2} {3} {4}",
                 this[0], this[1], this[2], this[3], this[4]);
         }
@@ -27,7 +28,7 @@ namespace RubyQuiz.Core.Solitaire
         {
             get
             {
-                if (index < 0 || index > 4) throw new ArgumentOutOfRangeException("index", "Index must be between 0 and 4 inclusive");
+                if (index < 0 || index > 4) throw new ArgumentOutOfRangeException(nameof(index), "Index must be between 0 and 4 inclusive");
 
                 return (byte) ((_contents >> (4-index)*8) & 0xFF);
             }
@@ -47,14 +48,14 @@ namespace RubyQuiz.Core.Solitaire
         public NumberGroup Add(NumberGroup that)
         {
             return new NumberGroup(
-                add(this[0], that[0]),
-                add(this[1], that[1]),
-                add(this[2], that[2]),
-                add(this[3], that[3]),
-                add(this[4], that[4]));
+                Add(this[0], that[0]),
+                Add(this[1], that[1]),
+                Add(this[2], that[2]),
+                Add(this[3], that[3]),
+                Add(this[4], that[4]));
         }
 
-        private byte add(byte a, byte b)
+        private static byte Add(byte a, byte b)
         {
             var sum = (byte) (a + b);
             if (sum > 26)
@@ -66,14 +67,14 @@ namespace RubyQuiz.Core.Solitaire
         public NumberGroup Subtract(NumberGroup that)
         {
             return new NumberGroup(
-                subtract(this[0], that[0]),
-                subtract(this[1], that[1]),
-                subtract(this[2], that[2]),
-                subtract(this[3], that[3]),
-                subtract(this[4], that[4]));
+                Subtract(this[0], that[0]),
+                Subtract(this[1], that[1]),
+                Subtract(this[2], that[2]),
+                Subtract(this[3], that[3]),
+                Subtract(this[4], that[4]));
         }
 
-        private byte subtract(byte a, byte b)
+        private static byte Subtract(byte a, byte b)
         {
             if (a <= b)
                 a += 26;

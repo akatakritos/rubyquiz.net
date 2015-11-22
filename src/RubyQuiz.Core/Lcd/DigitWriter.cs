@@ -8,8 +8,6 @@ namespace RubyQuiz.Core.Lcd
     public class DigitWriter
     {
         private readonly TextWriter _output;
-        private readonly int _width;
-
         private const char Space = ' ';
         private const char VerticalSegment = '|';
         private const char HorizontalSegment = '-';
@@ -17,13 +15,13 @@ namespace RubyQuiz.Core.Lcd
         public DigitWriter(TextWriter output, int width = 2)
         {
             if (output == null) throw new ArgumentException("output");
-            if (width <= 0) throw new ArgumentOutOfRangeException("width", string.Format("width must be > 0, '{0}' given.", width));
+            if (width <= 0) throw new ArgumentOutOfRangeException(nameof(width), $"width must be > 0, '{width}' given.");
 
             _output = output;
-            _width = width;
+            Width = width;
         }
 
-        public int Width { get { return _width; } }
+        public int Width { get; }
 
         public void Write(string digits)
         {
@@ -47,7 +45,7 @@ namespace RubyQuiz.Core.Lcd
 
         private void PrintForEachDigit(IList<Segments> digits, Action<Segments> print)
         {
-            for (int i = 0; i < digits.Count; i++)
+            for (var i = 0; i < digits.Count; i++)
             {
                 var digit = digits[i];
 
@@ -110,7 +108,7 @@ namespace RubyQuiz.Core.Lcd
 
         private void Scale(char c)
         {
-            for (var i = 0; i < _width; i++)
+            for (var i = 0; i < Width; i++)
                 _output.Write(c);
         }
 
