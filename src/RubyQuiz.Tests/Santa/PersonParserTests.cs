@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using NFluent;
+
 using NUnit.Framework;
 
 using RubyQuiz.Core.Santa;
@@ -15,42 +17,42 @@ namespace RubyQuiz.Tests.Santa
         public void TestItParsesFirstName()
         {
             var person = PersonParser.Parse("Luke Skywalker <luke@theforce.net>");
-            Assert.That(person.FirstName, Is.EqualTo("Luke"));
+            Check.That(person.FirstName).IsEqualTo("Luke");
         }
 
         [Test]
         public void TestItParsesLastName()
         {
             var person = PersonParser.Parse("Leia Skywalker <leia@therebellion.org>");
-            Assert.That(person.LastName, Is.EqualTo("Skywalker"));
+            Check.That(person.LastName).IsEqualTo("Skywalker");
         }
 
         [Test]
         public void ItParsesEmailAddresses()
         {
             var person = PersonParser.Parse("Bruce Wayne <bruce@imbatman.com>");
-            Assert.That(person.Email, Is.EqualTo("bruce@imbatman.com"));
+            Check.That(person.Email).IsEqualTo("bruce@imbatman.com");
         }
 
         [Test]
         public void ThrowFormatExceptionOnBadString()
         {
-            Assert.Throws<FormatException>(() => PersonParser.Parse("THIS IS A BAD STRING"));
+            Check.ThatCode(() => PersonParser.Parse("THIS IS A BAD STRING")).Throws<FormatException>();
 
-            Assert.Throws<FormatException>(() => PersonParser.Parse("first last email@somethingnotinbrackets"));
+            Check.ThatCode(() => PersonParser.Parse("first last email@somethingnotinbrackets")).Throws<FormatException>();
         }
 
         [Test]
         public void ThrowsOnNullParameter()
         {
-            Assert.Throws<ArgumentNullException>(() => PersonParser.Parse(null));
+            Check.ThatCode(() => PersonParser.Parse(null)).Throws<ArgumentNullException>();
         }
 
         [Test]
         public void MultipleWhiteSpaceIsPermitted()
         {
             var p = PersonParser.Parse("Bob   Johnson  \t<bob@johnson.com>");
-            Assert.That(p, Is.EqualTo(new Person("Bob", "Johnson", "bob@johnson.com")));
+            Check.That(p).IsEqualTo(new Person("Bob", "Johnson", "bob@johnson.com"));
         }
     }
 }

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using NFluent;
+
 using NUnit.Framework;
 
 using RubyQuiz.Core.Solitaire;
@@ -15,32 +17,32 @@ namespace RubyQuiz.Tests.Solitaire
         public void ItPadsWithXWhenNecessary()
         {
             var group = new CharacterGroup("MATT");
-            Assert.That(group.ToString(), Is.EqualTo("MATTX"));
+            Check.That(group.ToString()).IsEqualTo("MATTX");
         }
 
         [Test]
         public void ItThrowsIfThereAreMoreThan5InitialCharacters()
         {
-            Assert.Throws<ArgumentException>(() => new CharacterGroup("TOOLONG"));
+            Check.ThatCode(() => new CharacterGroup("TOOLONG")).Throws<ArgumentException>();
         }
 
         [Test]
         public void ItThrowsIfTheInitialStringIsEmptyOrNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new CharacterGroup(null));
-            Assert.Throws<ArgumentException>(() => new CharacterGroup(""));
+            Check.ThatCode(() => new CharacterGroup(null)).Throws<ArgumentNullException>();
+            Check.ThatCode(() => new CharacterGroup("")).Throws<ArgumentException>();
         }
 
         [Test]
         public void ItCanCreateASequenceFromAnInputStream()
         {
             var sequence = CharacterGroup.CreateSequence("ABCDEFGHIJK");
-            Assert.That(sequence, Is.EqualTo(new CharacterGroup[]
+            Check.That(sequence).ContainsExactly(new[]
             {
                 new CharacterGroup("ABCDE"),
                 new CharacterGroup("FGHIJ"),
                 new CharacterGroup("K"), 
-            }));
+            });
         }
 
         [Test]
@@ -48,14 +50,14 @@ namespace RubyQuiz.Tests.Solitaire
         {
             var group = new CharacterGroup("ABCDE");
 
-            Assert.That(group[0], Is.EqualTo('A'));
+            Check.That(group[0]).IsEqualTo('A');
         }
 
         [Test]
         public void ItCanConvertToANumberGroup()
         {
             var numberGroup = new CharacterGroup("ABCDE").ToNumberGroup();
-            Assert.That(numberGroup, Is.EqualTo(new NumberGroup(1, 2, 3, 4, 5)));
+            Check.That(numberGroup).IsEqualTo(new NumberGroup(1, 2, 3, 4, 5));
         }
     }
 }

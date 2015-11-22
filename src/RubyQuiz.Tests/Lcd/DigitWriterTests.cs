@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
+using NFluent;
+
 using NUnit.Framework;
 
 using RubyQuiz.Core.Lcd;
@@ -13,7 +15,7 @@ namespace RubyQuiz.Tests.Lcd
     public class DigitWriterTests
     {
 
-        [TestCaseSource(typeof(DigitFixtures), "AllDigitsWithWidthTwo")]
+        [TestCaseSource(typeof(DigitFixtures), nameof(DigitFixtures.AllDigitsWithWidthTwo))]
         public void SingleDigits(string digit, string expected)
         {
             var output = new StringWriter();
@@ -21,7 +23,7 @@ namespace RubyQuiz.Tests.Lcd
 
             writer.Write(digit);
 
-            Assert.That(output.ToString(), Is.EqualTo(expected));
+            Check.That(output.ToString()).IsEqualTo(expected);
         }
 
         [Test]
@@ -31,7 +33,7 @@ namespace RubyQuiz.Tests.Lcd
 
             var writer = new DigitWriter(output);
 
-            Assert.That(writer.Width, Is.EqualTo(2));
+            Check.That(writer.Width).IsEqualTo(2);
         }
 
         [TestCaseSource(typeof(DigitFixtures), "AllDigitsWithWidthThree")]
@@ -42,7 +44,7 @@ namespace RubyQuiz.Tests.Lcd
 
             writer.Write(digit);
 
-            Assert.That(output.ToString(), Is.EqualTo(expected));
+            Check.That(output.ToString()).IsEqualTo(expected);
         }
 
         [Test]
@@ -53,14 +55,14 @@ namespace RubyQuiz.Tests.Lcd
 
             writer.Write("012345");
 
-            Assert.That(output.ToString(), Is.EqualTo(DigitFixtures.Create(
+            Check.That(output.ToString()).IsEqualTo(DigitFixtures.Create(
                 " --        --   --        -- ",
                 "|  |    |    |    | |  | |   ",
                 "|  |    |    |    | |  | |   ",
                 "           --   --   --   -- ",
                 "|  |    | |       |    |    |",
                 "|  |    | |       |    |    |",
-                " --        --   --        -- ")));
+                " --        --   --        -- "));
         }
 
         [Test]
@@ -69,7 +71,7 @@ namespace RubyQuiz.Tests.Lcd
             var _ = new StringWriter();
             var writer = new DigitWriter(_);
 
-            Assert.Throws<ArgumentException>(() => writer.Write("0123a"));
+            Check.ThatCode(() => writer.Write("0123a")).Throws<ArgumentException>();
         }
 
     }

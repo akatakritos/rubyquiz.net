@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using NFluent;
+
 using NUnit.Framework;
 
 using RubyQuiz.Core.Solitaire;
@@ -15,14 +17,14 @@ namespace RubyQuiz.Tests.Solitaire
         public void ItRemovesNonAtoZCharacters()
         {
             var result = MessageSanitizer.Sanitize("12ABC%^DEFG123");
-            Assert.That(result, Is.EqualTo("ABCDEFG"));
+            Check.That(string.Join("", result)).IsEqualTo("ABCDEFG");
         }
 
         [Test]
         public void ItUpperCasesThemAll()
         {
             var result = MessageSanitizer.Sanitize("abcdefg");
-            Assert.That(result, Is.EqualTo("ABCDEFG"));
+            Check.That(string.Join("", result)).IsEqualTo("ABCDEFG");
         }
     }
 }

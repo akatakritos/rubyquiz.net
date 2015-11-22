@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using NFluent;
+
 using NUnit.Framework;
 
 using RubyQuiz.Core.Santa;
@@ -18,8 +20,8 @@ namespace RubyQuiz.Tests.Santa
             var mom = new Person(Faker.Name.First(), LAST_NAME, Faker.Internet.Email());
             var dad = new Person(Faker.Name.First(), LAST_NAME, Faker.Internet.Email());
 
-            Assert.That(mom.CanGiveTo(dad), Is.False);
-            Assert.That(dad.CanGiveTo(mom), Is.False);
+            Check.That(mom.CanGiveTo(dad)).IsFalse();
+            Check.That(dad.CanGiveTo(mom)).IsFalse();
         }
 
         [Test]
@@ -28,8 +30,8 @@ namespace RubyQuiz.Tests.Santa
             var me = new Person("Matt", "Burke", "mburke@example.com");
             var mark = new Person("Mark", "Bernardo", "mbernardo@example.com");
 
-            Assert.That(me.CanGiveTo(mark), Is.True);
-            Assert.That(mark.CanGiveTo(me), Is.True);
+            Check.That(me.CanGiveTo(mark)).IsTrue();
+            Check.That(mark.CanGiveTo(me)).IsTrue();
         }
     }
 }

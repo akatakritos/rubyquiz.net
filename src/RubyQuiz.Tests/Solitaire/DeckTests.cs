@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using NFluent;
+
 using NUnit.Framework;
 
 using RubyQuiz.Core.Solitaire;
@@ -16,10 +18,10 @@ namespace RubyQuiz.Tests.Solitaire
         {
             var deck = new Deck();
 
-            Assert.That(deck[0], Is.EqualTo(new Card(Suit.Clubs, Face.Ace)));
-            Assert.That(deck[13], Is.EqualTo(new Card(Suit.Diamonds, Face.Ace)));
-            Assert.That(deck[52], Is.EqualTo(Card.RedJoker));
-            Assert.That(deck[53], Is.EqualTo(Card.BlackJoker));
+            Check.That(deck[0]).IsEqualTo(new Card(Suit.Clubs, Face.Ace));
+            Check.That(deck[13]).IsEqualTo(new Card(Suit.Diamonds, Face.Ace));
+            Check.That(deck[52]).IsEqualTo(Card.RedJoker);
+            Check.That(deck[53]).IsEqualTo(Card.BlackJoker);
         }
 
         [Test]
@@ -29,7 +31,7 @@ namespace RubyQuiz.Tests.Solitaire
 
             deck.MoveCardDown(Card.RedJoker, 1);
 
-            Assert.That(deck[53], Is.EqualTo(Card.RedJoker));
+            Check.That(deck[53]).IsEqualTo(Card.RedJoker);
         }
 
         [Test]
@@ -40,8 +42,8 @@ namespace RubyQuiz.Tests.Solitaire
 
             deck.MoveCardDown(Card.BlackJoker, 2);
 
-            Assert.That(deck[0], Is.EqualTo(new Card(Suit.Clubs, Face.Ace)));
-            Assert.That(deck[1], Is.EqualTo(Card.BlackJoker));
+            Check.That(deck[0]).IsEqualTo(new Card(Suit.Clubs, Face.Ace));
+            Check.That(deck[1]).IsEqualTo(Card.BlackJoker);
         }
 
         [Test]
@@ -54,11 +56,11 @@ namespace RubyQuiz.Tests.Solitaire
 
             deck.TripleCutAround(Card.RedJoker, Card.BlackJoker);
 
-            Assert.That(deck[0], Is.EqualTo(Card.BlackJoker));
-            Assert.That(deck[1], Is.EqualTo(new Card(Suit.Clubs, Face.Two)));
-            Assert.That(deck[51], Is.EqualTo(new Card(Suit.Spades, Face.King)));
-            Assert.That(deck[52], Is.EqualTo(Card.RedJoker));
-            Assert.That(deck[53], Is.EqualTo(new Card(Suit.Clubs, Face.Ace)));
+            Check.That(deck[0]).IsEqualTo(Card.BlackJoker);
+            Check.That(deck[1]).IsEqualTo(new Card(Suit.Clubs, Face.Two));
+            Check.That(deck[51]).IsEqualTo(new Card(Suit.Spades, Face.King));
+            Check.That(deck[52]).IsEqualTo(Card.RedJoker);
+            Check.That(deck[53]).IsEqualTo(new Card(Suit.Clubs, Face.Ace));
         }
 
         [Test]
@@ -72,17 +74,17 @@ namespace RubyQuiz.Tests.Solitaire
 
             deck.CountCut(1);
 
-            Assert.That(deck[0], Is.EqualTo(new Card(Suit.Clubs, Face.Two)));
-            Assert.That(deck[51], Is.EqualTo(Card.RedJoker));
-            Assert.That(deck[52], Is.EqualTo(Card.BlackJoker));
-            Assert.That(deck[53], Is.EqualTo(new Card(Suit.Clubs, Face.Ace)));
+            Check.That(deck[0]).IsEqualTo(new Card(Suit.Clubs, Face.Two));
+            Check.That(deck[51]).IsEqualTo(Card.RedJoker);
+            Check.That(deck[52]).IsEqualTo(Card.BlackJoker);
+            Check.That(deck[53]).IsEqualTo(new Card(Suit.Clubs, Face.Ace));
         }
 
         [Test]
         public void EachCardInDefaultDeckIsUnique()
         {
             var deck = new Deck();
-            Assert.That(deck.Cards.Distinct().Count(), Is.EqualTo(Deck.CardsInDeck));
+            Check.That(deck.Cards.Distinct()).HasSize(Deck.CardsInDeck);
         }
 
     }

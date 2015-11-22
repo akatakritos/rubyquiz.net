@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using NFluent;
+
 using NUnit.Framework;
 
 using RubyQuiz.Core.Solitaire;
@@ -14,28 +16,28 @@ namespace RubyQuiz.Tests.Solitaire
         [Test]
         public void HasValueBasedOnSuitAndFaceWhereClubsIsBase()
         {
-            Assert.That(new Card(Suit.Clubs, Face.Ace).Value, Is.EqualTo(1));
-            Assert.That(new Card(Suit.Clubs, Face.King).Value, Is.EqualTo(13));
+            Check.That(new Card(Suit.Clubs, Face.Ace).Value).IsEqualTo((byte)1);
+            Check.That(new Card(Suit.Clubs, Face.King).Value).IsEqualTo((byte)13);
         }
 
         [Test]
         public void HasValueBasedOnSuitAndFaceWhereSuitIsSpades()
         {
-            Assert.That(new Card(Suit.Spades, Face.Ace).Value, Is.EqualTo(40));
-            Assert.That(new Card(Suit.Spades, Face.King).Value, Is.EqualTo(52));
+            Check.That(new Card(Suit.Spades, Face.Ace).Value).IsEqualTo((byte)40);
+            Check.That(new Card(Suit.Spades, Face.King).Value).IsEqualTo((byte)52);
         }
 
         [Test]
         public void EitherJokerHasValueOf53()
         {
-            Assert.That(Card.RedJoker.Value, Is.EqualTo(53));
-            Assert.That(Card.BlackJoker.Value, Is.EqualTo(53));
+            Check.That(Card.RedJoker.Value).IsEqualTo((byte)53);
+            Check.That(Card.BlackJoker.Value).IsEqualTo((byte)53);
         }
 
         [Test]
         public void TheTwoJokesDontEvaluateEqual()
         {
-            Assert.That(Card.RedJoker, Is.Not.EqualTo(Card.BlackJoker));
+            Check.That(Card.RedJoker).IsNotEqualTo(Card.BlackJoker);
         }
     }
 }

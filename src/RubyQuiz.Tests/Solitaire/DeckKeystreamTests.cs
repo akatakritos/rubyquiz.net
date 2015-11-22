@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using NFluent;
+
 using NUnit.Framework;
 
 using RubyQuiz.Core.Solitaire;
@@ -18,7 +20,7 @@ namespace RubyQuiz.Tests.Solitaire
 
             var firstLetter = stream.GetNext();
 
-            Assert.That(firstLetter, Is.EqualTo('D'));
+            Check.That(firstLetter).IsEqualTo('D');
         }
 
         [Test]
@@ -32,7 +34,7 @@ namespace RubyQuiz.Tests.Solitaire
 
             var fourthLetter = stream.GetNext();
 
-            Assert.That(fourthLetter, Is.EqualTo('X'));
+            Check.That(fourthLetter).IsEqualTo('X');
         }
 
         [Test]
@@ -57,7 +59,7 @@ namespace RubyQuiz.Tests.Solitaire
             foreach (var c in firstTenKeyChars)
                 Console.WriteLine(c);
 
-            Assert.That(firstTenKeyChars, Is.EqualTo(new char[]{ 'D', 'W', 'J', 'X', 'H', 'Y', 'R', 'F', 'D', 'G'}));
+            Check.That(firstTenKeyChars).ContainsExactly(new[]{ 'D', 'W', 'J', 'X', 'H', 'Y', 'R', 'F', 'D', 'G'});
         }
     }
 }

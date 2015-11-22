@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using NFluent;
+
 using NUnit.Framework;
 
 using RubyQuiz.Core.Solitaire;
@@ -15,25 +17,25 @@ namespace RubyQuiz.Tests.Solitaire
         public void ConstructorBitPacksThingsRight()
         {
             var group = new NumberGroup(1, 2, 3, 4, 5);
-            Assert.That(group.ToString(), Is.EqualTo("1 2 3 4 5"));
+            Check.That(group.ToString()).IsEqualTo("1 2 3 4 5");
         }
 
         [Test]
         public void ItHasAnIndexer()
         {
             var group = new NumberGroup(1, 2, 3, 4, 5);
-            Assert.That(group[0], Is.EqualTo(1));
-            Assert.That(group[1], Is.EqualTo(2));
-            Assert.That(group[2], Is.EqualTo(3));
-            Assert.That(group[3], Is.EqualTo(4));
-            Assert.That(group[4], Is.EqualTo(5));
+            Check.That(group[0]).IsEqualTo((byte)1);
+            Check.That(group[1]).IsEqualTo((byte)2);
+            Check.That(group[2]).IsEqualTo((byte)3);
+            Check.That(group[3]).IsEqualTo((byte)4);
+            Check.That(group[4]).IsEqualTo((byte)5);
         }
 
         [Test]
         public void ItCanConvertToACharacterGroup()
         {
             var characterGroup = new NumberGroup(1, 2, 3, 4, 5).ToCharacterGroup();
-            Assert.That(characterGroup, Is.EqualTo(new CharacterGroup("ABCDE")));
+            Check.That(characterGroup).IsEqualTo(new CharacterGroup("ABCDE"));
         }
 
         [Test]
@@ -44,7 +46,7 @@ namespace RubyQuiz.Tests.Solitaire
 
             var result = a.Add(b);
 
-            Assert.That(result, Is.EqualTo(new NumberGroup(6, 6, 6, 6, 6)));
+            Check.That(result).IsEqualTo(new NumberGroup(6, 6, 6, 6, 6));
         }
 
         [Test]
@@ -55,7 +57,7 @@ namespace RubyQuiz.Tests.Solitaire
 
             var result = a.Add(b);
 
-            Assert.That(result, Is.EqualTo(new NumberGroup(6, 7, 8, 9, 10)));
+            Check.That(result).IsEqualTo(new NumberGroup(6, 7, 8, 9, 10));
         }
 
         [Test]
@@ -66,7 +68,7 @@ namespace RubyQuiz.Tests.Solitaire
 
             var result = a.Subtract(b);
 
-            Assert.That(result, Is.EqualTo(new NumberGroup(9, 9, 9, 9, 9)));
+            Check.That(result).IsEqualTo(new NumberGroup(9, 9, 9, 9, 9));
         }
 
         [Test]
@@ -77,7 +79,7 @@ namespace RubyQuiz.Tests.Solitaire
 
             var result = a.Subtract(b);
 
-            Assert.That(result, Is.EqualTo(new NumberGroup(17, 17, 17, 17, 17)));
+            Check.That(result).IsEqualTo(new NumberGroup(17, 17, 17, 17, 17));
         }
     }
 }

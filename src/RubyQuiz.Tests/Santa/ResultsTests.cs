@@ -4,6 +4,8 @@ using System.Linq;
 
 using Faker.Extensions;
 
+using NFluent;
+
 using NUnit.Framework;
 
 using RubyQuiz.Core.Santa;
@@ -23,7 +25,8 @@ namespace RubyQuiz.Tests.Santa
                 new Person(Faker.Name.First(), LAST_NAME, Faker.Internet.Email()),
                 new Person(Faker.Name.First(), LAST_NAME, Faker.Internet.Email())
             };
-            Assert.Throws<ImpossibleSantaException>(() => Assigner.Assign(people));
+
+            Check.ThatCode(() => Assigner.Assign(people)).Throws<ImpossibleSantaException>();
         }
 
         [Test]
@@ -35,7 +38,7 @@ namespace RubyQuiz.Tests.Santa
 
             foreach (var a in assignments)
             {
-                Assert.That(a.Santa.CanGiveTo(a.Receiver));
+                Check.That(a.Santa.CanGiveTo(a.Receiver));
             }
         }
     }

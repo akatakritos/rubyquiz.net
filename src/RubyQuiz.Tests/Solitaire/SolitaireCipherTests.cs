@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using NFluent;
+
 using NUnit.Framework;
 
 using RubyQuiz.Core.Solitaire;
@@ -16,7 +18,7 @@ namespace RubyQuiz.Tests.Solitaire
         {
             var cipher = new SolitaireCipher();
             var encryted = cipher.Encrypt(new Deck(), "YOUR CIPHER IS WORKING");
-            Assert.That(encryted, Is.EqualTo("CLEPKHHNIYCFPWHFDFEH"));
+            Check.That(encryted).IsEqualTo("CLEPKHHNIYCFPWHFDFEH");
         }
 
         [Test]
@@ -24,7 +26,7 @@ namespace RubyQuiz.Tests.Solitaire
         {
             var cipher = new SolitaireCipher();
             var encryted = cipher.Encrypt(new Deck(), "WELCOME TO RUBY QUIZ");
-            Assert.That(encryted, Is.EqualTo("ABVAWLWZSYOORYKDUPVH"));
+            Check.That(encryted).IsEqualTo("ABVAWLWZSYOORYKDUPVH");
         }
 
         [Test]
@@ -32,7 +34,7 @@ namespace RubyQuiz.Tests.Solitaire
         {
             var cipher = new SolitaireCipher();
             var encryted = cipher.Decrypt(new Deck(), "CLEPKHHNIYCFPWHFDFEH");
-            Assert.That(encryted, Is.EqualTo("YOURCIPHERISWORKINGX"));
+            Check.That(encryted).IsEqualTo("YOURCIPHERISWORKINGX");
         }
 
         [Test]
@@ -40,7 +42,7 @@ namespace RubyQuiz.Tests.Solitaire
         {
             var cipher = new SolitaireCipher();
             var encryted = cipher.Decrypt(new Deck(), "ABVAWLWZSYOORYKDUPVH");
-            Assert.That(encryted, Is.EqualTo("WELCOMETORUBYQUIZXXX"));
+            Check.That(encryted).IsEqualTo("WELCOMETORUBYQUIZXXX");
         }
     }
 }
