@@ -4,16 +4,16 @@ using System.Linq;
 
 using NFluent;
 
-using NUnit.Framework;
 
 using RubyQuiz.Core.Solitaire;
 
+using Xunit;
+
 namespace RubyQuiz.Tests.Solitaire
 {
-    [TestFixture]
     public class SolitaireCipherTests
     {
-        [Test]
+        [Fact]
         public void TestEncryptionSample1()
         {
             var cipher = new SolitaireCipher();
@@ -21,7 +21,7 @@ namespace RubyQuiz.Tests.Solitaire
             Check.That(encryted).IsEqualTo("CLEPKHHNIYCFPWHFDFEH");
         }
 
-        [Test]
+        [Fact]
         public void TestEncryiptionSample2()
         {
             var cipher = new SolitaireCipher();
@@ -29,7 +29,7 @@ namespace RubyQuiz.Tests.Solitaire
             Check.That(encryted).IsEqualTo("ABVAWLWZSYOORYKDUPVH");
         }
 
-        [Test]
+        [Fact]
         public void TestDecryptionSample1()
         {
             var cipher = new SolitaireCipher();
@@ -37,7 +37,7 @@ namespace RubyQuiz.Tests.Solitaire
             Check.That(encryted).IsEqualTo("YOURCIPHERISWORKINGX");
         }
 
-        [Test]
+        [Fact]
         public void TestDecryptionSample2()
         {
             var cipher = new SolitaireCipher();

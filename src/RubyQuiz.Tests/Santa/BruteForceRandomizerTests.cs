@@ -2,13 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using NUnit.Framework;
-
 using RubyQuiz.Core.Santa;
 
 namespace RubyQuiz.Tests.Santa
 {
-    [TestFixture]
     public class BruteForceRandomizerTests : ResultsTests
     {
         private readonly BruteForceRandomizer _assigner;

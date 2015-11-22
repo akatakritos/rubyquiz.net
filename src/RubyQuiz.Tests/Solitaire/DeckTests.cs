@@ -4,16 +4,15 @@ using System.Linq;
 
 using NFluent;
 
-using NUnit.Framework;
-
 using RubyQuiz.Core.Solitaire;
+
+using Xunit;
 
 namespace RubyQuiz.Tests.Solitaire
 {
-    [TestFixture]
     public class DeckTests
     {
-        [Test]
+        [Fact]
         public void TheDefaultStateIsOrdered()
         {
             var deck = new Deck();
@@ -24,7 +23,7 @@ namespace RubyQuiz.Tests.Solitaire
             Check.That(deck[53]).IsEqualTo(Card.BlackJoker);
         }
 
-        [Test]
+        [Fact]
         public void MoveRedJokerDownOneGetsItToTheEnd()
         {
             var deck = new Deck();
@@ -34,7 +33,7 @@ namespace RubyQuiz.Tests.Solitaire
             Check.That(deck[53]).IsEqualTo(Card.RedJoker);
         }
 
-        [Test]
+        [Fact]
         public void MovingtheBlackJokerNextWrapsItToTheTop()
         {
             var deck = new Deck();
@@ -46,7 +45,7 @@ namespace RubyQuiz.Tests.Solitaire
             Check.That(deck[1]).IsEqualTo(Card.BlackJoker);
         }
 
-        [Test]
+        [Fact]
         public void TripleCutAroundPivots()
         {
             //set up according to quiz description
@@ -63,7 +62,7 @@ namespace RubyQuiz.Tests.Solitaire
             Check.That(deck[53]).IsEqualTo(new Card(Suit.Clubs, Face.Ace));
         }
 
-        [Test]
+        [Fact]
         public void CountCutMovesSomeCardsAccordingToTheQuizDescription()
         {
             //set up according to quiz description
@@ -80,7 +79,7 @@ namespace RubyQuiz.Tests.Solitaire
             Check.That(deck[53]).IsEqualTo(new Card(Suit.Clubs, Face.Ace));
         }
 
-        [Test]
+        [Fact]
         public void EachCardInDefaultDeckIsUnique()
         {
             var deck = new Deck();

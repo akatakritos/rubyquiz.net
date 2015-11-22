@@ -4,16 +4,15 @@ using System.Linq;
 
 using NFluent;
 
-using NUnit.Framework;
-
 using RubyQuiz.Core.Solitaire;
+
+using Xunit;
 
 namespace RubyQuiz.Tests.Solitaire
 {
-    [TestFixture]
     public class DeckKeystreamTests
     {
-        [Test]
+        [Fact]
         public void FirstLetterInUnkeyedDeckIsD()
         {
             var stream = new DeckKeystream(new Deck());
@@ -23,7 +22,7 @@ namespace RubyQuiz.Tests.Solitaire
             Check.That(firstLetter).IsEqualTo('D');
         }
 
-        [Test]
+        [Fact]
         public void ItSkipsJokers()
         {
             var stream = new DeckKeystream(new Deck());
@@ -37,7 +36,7 @@ namespace RubyQuiz.Tests.Solitaire
             Check.That(fourthLetter).IsEqualTo('X');
         }
 
-        [Test]
+        [Fact]
         public void SmokeTest()
         {
             var stream = new DeckKeystream(new Deck());

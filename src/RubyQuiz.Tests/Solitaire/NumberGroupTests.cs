@@ -4,23 +4,22 @@ using System.Linq;
 
 using NFluent;
 
-using NUnit.Framework;
-
 using RubyQuiz.Core.Solitaire;
+
+using Xunit;
 
 namespace RubyQuiz.Tests.Solitaire
 {
-    [TestFixture]
     public class NumberGroupTests
     {
-        [Test]
+        [Fact]
         public void ConstructorBitPacksThingsRight()
         {
             var group = new NumberGroup(1, 2, 3, 4, 5);
             Check.That(group.ToString()).IsEqualTo("1 2 3 4 5");
         }
 
-        [Test]
+        [Fact]
         public void ItHasAnIndexer()
         {
             var group = new NumberGroup(1, 2, 3, 4, 5);
@@ -31,14 +30,14 @@ namespace RubyQuiz.Tests.Solitaire
             Check.That(group[4]).IsEqualTo((byte)5);
         }
 
-        [Test]
+        [Fact]
         public void ItCanConvertToACharacterGroup()
         {
             var characterGroup = new NumberGroup(1, 2, 3, 4, 5).ToCharacterGroup();
             Check.That(characterGroup).IsEqualTo(new CharacterGroup("ABCDE"));
         }
 
-        [Test]
+        [Fact]
         public void CombiningWithAnotherNumberGroupAddsTheValuesTogether()
         {
             var a = new NumberGroup(1, 2, 3, 4, 5);
@@ -49,7 +48,7 @@ namespace RubyQuiz.Tests.Solitaire
             Check.That(result).IsEqualTo(new NumberGroup(6, 6, 6, 6, 6));
         }
 
-        [Test]
+        [Fact]
         public void CombiningBiggerNumbersWrapAround()
         {
             var a = new NumberGroup(22, 23, 24, 25, 26);
@@ -60,7 +59,7 @@ namespace RubyQuiz.Tests.Solitaire
             Check.That(result).IsEqualTo(new NumberGroup(6, 7, 8, 9, 10));
         }
 
-        [Test]
+        [Fact]
         public void SubtractingWithAnotherNumberGroupsSubtractsTheValues()
         {
             var a = new NumberGroup(10, 11, 12, 13, 14);
@@ -71,7 +70,7 @@ namespace RubyQuiz.Tests.Solitaire
             Check.That(result).IsEqualTo(new NumberGroup(9, 9, 9, 9, 9));
         }
 
-        [Test]
+        [Fact]
         public void IfTheFirstIsLessThanTheSecondItAdds26First()
         {
             var a = new NumberGroup(1, 2, 3, 4, 5);

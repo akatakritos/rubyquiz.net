@@ -2,10 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using NUnit.Framework;
 
 namespace RubyQuiz.Tests.Lcd
 {
+    internal class TestCaseData
+    {
+        public string Input { get; }
+        public string Expected { get; }
+
+        public TestCaseData(string input, string expected)
+        {
+            Input = input;
+            Expected = expected;
+        }
+    }
+
     internal static class DigitFixtures
     {
         internal static string Create(params string[] lines)

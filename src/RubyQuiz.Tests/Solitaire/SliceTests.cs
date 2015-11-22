@@ -4,16 +4,16 @@ using System.Linq;
 
 using NFluent;
 
-using NUnit.Framework;
 
 using RubyQuiz.Core.Solitaire;
 
+using Xunit;
+
 namespace RubyQuiz.Tests.Solitaire
 {
-    [TestFixture]
     public class SliceTests
     {
-        [Test]
+        [Fact]
         public void ItEnumeratesTheValuesBetween()
         {
             var source = new[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
@@ -22,7 +22,7 @@ namespace RubyQuiz.Tests.Solitaire
             Check.That(slice.Items).ContainsExactly(3, 4, 5);
         }
 
-        [Test]
+        [Fact]
         public void SliceOfLengthOneStillWorks()
         {
             var source = new[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
@@ -31,7 +31,7 @@ namespace RubyQuiz.Tests.Solitaire
             Check.That(slice.Items).ContainsExactly(3);
         }
 
-        [Test]
+        [Fact]
         public void CanMakeEmptySlice()
         {
             var source = new[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
@@ -40,7 +40,7 @@ namespace RubyQuiz.Tests.Solitaire
             Check.That(slice.Items).IsEmpty();
         }
 
-        [Test]
+        [Fact]
         public void SliceToTheEndWorksCorrectly()
         {
             var source = new[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};

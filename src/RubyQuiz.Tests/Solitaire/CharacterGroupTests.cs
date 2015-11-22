@@ -4,36 +4,36 @@ using System.Linq;
 
 using NFluent;
 
-using NUnit.Framework;
 
 using RubyQuiz.Core.Solitaire;
 
+using Xunit;
+
 namespace RubyQuiz.Tests.Solitaire
 {
-    [TestFixture]
     public class CharacterGroupTests
     {
-        [Test]
+        [Fact]
         public void ItPadsWithXWhenNecessary()
         {
             var group = new CharacterGroup("MATT");
             Check.That(group.ToString()).IsEqualTo("MATTX");
         }
 
-        [Test]
+        [Fact]
         public void ItThrowsIfThereAreMoreThan5InitialCharacters()
         {
             Check.ThatCode(() => new CharacterGroup("TOOLONG")).Throws<ArgumentException>();
         }
 
-        [Test]
+        [Fact]
         public void ItThrowsIfTheInitialStringIsEmptyOrNull()
         {
             Check.ThatCode(() => new CharacterGroup(null)).Throws<ArgumentNullException>();
             Check.ThatCode(() => new CharacterGroup("")).Throws<ArgumentException>();
         }
 
-        [Test]
+        [Fact]
         public void ItCanCreateASequenceFromAnInputStream()
         {
             var sequence = CharacterGroup.CreateSequence("ABCDEFGHIJK");
@@ -45,7 +45,7 @@ namespace RubyQuiz.Tests.Solitaire
             });
         }
 
-        [Test]
+        [Fact]
         public void ItHasAnIndexer()
         {
             var group = new CharacterGroup("ABCDE");
@@ -53,7 +53,7 @@ namespace RubyQuiz.Tests.Solitaire
             Check.That(group[0]).IsEqualTo('A');
         }
 
-        [Test]
+        [Fact]
         public void ItCanConvertToANumberGroup()
         {
             var numberGroup = new CharacterGroup("ABCDE").ToNumberGroup();

@@ -4,16 +4,16 @@ using System.Linq;
 
 using NFluent;
 
-using NUnit.Framework;
 
 using RubyQuiz.Core.Solitaire;
 
+using Xunit;
+
 namespace RubyQuiz.Tests.Solitaire
 {
-    [TestFixture]
     public class CharacterConverterTests
     {
-        [Test]
+        [Fact]
         public void SmokeTestAlphaToNumber()
         {
             const string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";

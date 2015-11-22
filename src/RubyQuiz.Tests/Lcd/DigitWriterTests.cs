@@ -5,17 +5,16 @@ using System.Linq;
 
 using NFluent;
 
-using NUnit.Framework;
-
 using RubyQuiz.Core.Lcd;
+
+using Xunit;
 
 namespace RubyQuiz.Tests.Lcd
 {
-    [TestFixture]
     public class DigitWriterTests
     {
-
-        [TestCaseSource(typeof(DigitFixtures), nameof(DigitFixtures.AllDigitsWithWidthTwo))]
+        [Theory]
+        [MemberData(nameof(AllDigitsWithWidthTwo))]
         public void SingleDigits(string digit, string expected)
         {
             var output = new StringWriter();
@@ -26,7 +25,19 @@ namespace RubyQuiz.Tests.Lcd
             Check.That(output.ToString()).IsEqualTo(expected);
         }
 
-        [Test]
+        public static IEnumerable<object[]> AllDigitsWithWidthTwo()
+        {
+            return DigitFixtures.AllDigitsWithWidthTwo()
+                .Select(d => new object[] { d.Input, d.Expected });
+        }
+
+        public static IEnumerable<object[]> AllDigitsWithWidthThree()
+        {
+            return DigitFixtures.AllDigitsWithWidthThree()
+                .Select(d => new object[] { d.Input, d.Expected });
+        }
+
+        [Fact]
         public void ItDefaultsToWidthTwo()
         {
             var output = new StringWriter();
@@ -36,7 +47,8 @@ namespace RubyQuiz.Tests.Lcd
             Check.That(writer.Width).IsEqualTo(2);
         }
 
-        [TestCaseSource(typeof(DigitFixtures), "AllDigitsWithWidthThree")]
+        [Theory]
+        [MemberData(nameof(AllDigitsWithWidthThree))]
         public void SingleDigitsWide(string digit, string expected)
         {
             var output = new StringWriter();
@@ -47,7 +59,7 @@ namespace RubyQuiz.Tests.Lcd
             Check.That(output.ToString()).IsEqualTo(expected);
         }
 
-        [Test]
+        [Fact]
         public void MultipleDigitsInALine()
         {
             var output = new StringWriter();
@@ -65,7 +77,7 @@ namespace RubyQuiz.Tests.Lcd
                 " --        --   --        -- "));
         }
 
-        [Test]
+        [Fact]
         public void ThrowsIfPassedNonDigits()
         {
             var _ = new StringWriter();

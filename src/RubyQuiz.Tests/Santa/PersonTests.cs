@@ -4,16 +4,15 @@ using System.Linq;
 
 using NFluent;
 
-using NUnit.Framework;
-
 using RubyQuiz.Core.Santa;
+
+using Xunit;
 
 namespace RubyQuiz.Tests.Santa
 {
-    [TestFixture]
     public class PersonTests
     {
-        [Test]
+        [Fact]
         public void CantGiveToSomeOneInTheSameFamily()
         {
             const string LAST_NAME = "Burke";
@@ -24,7 +23,7 @@ namespace RubyQuiz.Tests.Santa
             Check.That(dad.CanGiveTo(mom)).IsFalse();
         }
 
-        [Test]
+        [Fact]
         public void CanGiveToSomeoneInADifferentFamily()
         {
             var me = new Person("Matt", "Burke", "mburke@example.com");

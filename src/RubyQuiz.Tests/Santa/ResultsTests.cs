@@ -6,9 +6,9 @@ using Faker.Extensions;
 
 using NFluent;
 
-using NUnit.Framework;
-
 using RubyQuiz.Core.Santa;
+
+using Xunit;
 
 namespace RubyQuiz.Tests.Santa
 {
@@ -16,7 +16,7 @@ namespace RubyQuiz.Tests.Santa
     {
         protected abstract ISantaAssigner Assigner { get; }
 
-        [Test]
+        [Fact]
         public void AssignerThrowImpossibleExceptionWhenImpossible()
         {
             const string LAST_NAME = "Burke";
@@ -29,7 +29,7 @@ namespace RubyQuiz.Tests.Santa
             Check.ThatCode(() => Assigner.Assign(people)).Throws<ImpossibleSantaException>();
         }
 
-        [Test]
+        [Fact]
         public void AssignerDoesntAssignPeopleInTheSameFamily()
         {
             var people = 10.Times(i => new Person(Faker.Name.First(), Faker.Name.Last(), Faker.Internet.Email()));

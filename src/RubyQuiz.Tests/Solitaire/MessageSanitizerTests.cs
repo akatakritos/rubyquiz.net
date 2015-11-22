@@ -4,23 +4,22 @@ using System.Linq;
 
 using NFluent;
 
-using NUnit.Framework;
-
 using RubyQuiz.Core.Solitaire;
+
+using Xunit;
 
 namespace RubyQuiz.Tests.Solitaire
 {
-    [TestFixture]
     public class MessageSanitizerTests
     {
-        [Test]
+        [Fact]
         public void ItRemovesNonAtoZCharacters()
         {
             var result = MessageSanitizer.Sanitize("12ABC%^DEFG123");
             Check.That(string.Join("", result)).IsEqualTo("ABCDEFG");
         }
 
-        [Test]
+        [Fact]
         public void ItUpperCasesThemAll()
         {
             var result = MessageSanitizer.Sanitize("abcdefg");
